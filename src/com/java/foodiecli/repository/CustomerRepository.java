@@ -18,6 +18,6 @@ public class CustomerRepository {
         return customer;
     }
     public Optional<Customer> getCustomerById(String id){
-        return  this.customerList.stream().filter(customer -> customer.getId().equals(id)).findFirst();
+        return  this.customerList.stream().filter(customer -> customer.getCustomerId().equals(id)).findFirst();
     }
 }
