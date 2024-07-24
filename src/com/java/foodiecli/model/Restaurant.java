@@ -8,7 +8,7 @@ public class Restaurant {
     private String id;
     private String name;
     private String address;
-    private List<Dish> menu;
+    private List<String> menu;
 
     public Restaurant(){
 
@@ -30,11 +30,11 @@ public class Restaurant {
         this.id = id;
     }
 
-    public List<Dish> getMenu() {
+    public List<String> getMenu() {
         return menu;
     }
 
-    public void setMenu(List<Dish> menu) {
+    public void setMenu(List<String> menu) {
         this.menu = menu;
     }
 
