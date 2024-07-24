@@ -22,11 +22,11 @@ public class Restaurant {
         this.address = address;
     }
 
-    public String getId() {
+    public String getRestaurantId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setRestaurantId(String id) {
         this.id = id;
     }
 
@@ -38,11 +38,11 @@ public class Restaurant {
         this.menu = menu;
     }
 
-    public String getName() {
+    public String getRestaurantName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setRestaurantName(String name) {
         this.name = name;
     }
 

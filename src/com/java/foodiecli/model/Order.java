@@ -31,11 +31,11 @@ public class Order {
         this.dishes = dishes;
     }
 
-    public String getId() {
+    public String getOrderId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setOrderId(String id) {
         this.id = id;
     }
 

@@ -21,19 +21,19 @@ public class Dish {
         this.description = description;
     }
 
-    public String getId() {
+    public String getDishId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setDishId(String id) {
         this.id = id;
     }
 
-    public String getName() {
+    public String getDishName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setDishName(String name) {
         this.name = name;
     }
 

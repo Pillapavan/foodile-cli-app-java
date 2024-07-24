@@ -20,19 +20,19 @@ import java.util.Objects;
         this.email = email;
     }
 
-    public String getId() {
+    public String getCustomerId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setCustomerId(String id) {
         this.id = id;
     }
 
-    public String getName() {
+    public String getCustomerName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setCustomerName(String name) {
         this.name = name;
     }
 
