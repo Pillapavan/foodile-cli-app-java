@@ -11,7 +11,7 @@ public class Order {
     private List<Dish> dishes;
     private double price;
 
-    Order(){
+    public  Order(){
 
     }
 

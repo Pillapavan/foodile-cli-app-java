@@ -2,17 +2,17 @@ package com.java.foodiecli.model;
 
 import java.util.Objects;
 
-public class Customer {
+ public class Customer {
     //String id, c,String name , String email, String password
     private String id;
     private String name;
     private String email;
     private String password;
-    Customer() {
 
-    }
+     public Customer() {
+     }
 
-    public String getEmail() {
+     public String getEmail() {
         return email;
     }
 

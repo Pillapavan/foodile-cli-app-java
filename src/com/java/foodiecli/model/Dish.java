@@ -9,7 +9,7 @@ public class Dish {
     private String description;
     private double price;
 
-    Dish(){
+    public Dish(){
 
     }
 

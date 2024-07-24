@@ -10,7 +10,7 @@ public class Restaurant {
     private String address;
     private List<Dish> menu;
 
-    Restaurant(){
+    public Restaurant(){
 
     }
 
