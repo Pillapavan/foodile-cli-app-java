@@ -13,6 +13,11 @@ public class CustomerRepository {
         CsvReader csvReader=new CsvReader();
         this.customerList=csvReader.readCustomerFromCsv();
     }
+
+    public List<Customer> getCustomerList(){
+        return this.customerList;
+    }
+
     public Customer saveCustomer(Customer customer){
         this.customerList.add(customer);
         return customer;
