@@ -28,10 +28,10 @@ public class CsvReader {
             while((line= br.readLine()) != null){
                 String[] data = line.split(splitCsvBy);
                 Customer customer =new Customer();
-                customer.setCustomerId(data[0]);
-                customer.setCustomerName(data[1]);
-                customer.setEmail(data[2]);
-                customer.setPassword(data[3]);
+                customer.setCustomerId(data[0])
+                          .setCustomerName(data[1])
+                          .setEmail(data[2])
+                          .setPassword(data[3]);
                 customersList.add(customer);
             }
         }
@@ -56,10 +56,10 @@ public class CsvReader {
            while ((line = br.readLine()) != null){
                String[] data = line.split(splitCsvBy);
                Dish dish=new Dish();
-               dish.setDishId(data[0]);
-               dish.setDishName(data[1]);
-               dish.setDescription(data[2]);
-               dish.setPrice(Double.parseDouble(data[3]));
+               dish.setDishId(data[0])
+                      .setDishName(data[1])
+                    .setDescription(data[2])
+                .setPrice(Double.parseDouble(data[3]));
                dishList.add(dish);
            }
 
@@ -83,10 +83,10 @@ public class CsvReader {
                 while ((line = br.readLine()) != null){
                     String[] data = line.split(splitCsvBy);
                     Restaurant restaurant = new Restaurant();
-                    restaurant.setRestaurantId(data[0]);
-                    restaurant.setRestaurantName(data[1]);
-                    restaurant.setAddress(data[2]);
-                    restaurant.setMenu(Arrays.asList((data[3]).split(":")));
+                    restaurant.setRestaurantId(data[0])
+                               .setRestaurantName(data[1])
+                               .setAddress(data[2])
+                               .setMenu(Arrays.asList((data[3]).split(":")));
                     restaurantList.add(restaurant);
                 }
 
