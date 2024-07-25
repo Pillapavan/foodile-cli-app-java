@@ -18,32 +18,36 @@ public class Restaurant {
         return address;
     }
 
-    public void setAddress(String address) {
+    public Restaurant setAddress(String address) {
         this.address = address;
+        return this;
     }
 
     public String getRestaurantId() {
         return id;
     }
 
-    public void setRestaurantId(String id) {
+    public Restaurant setRestaurantId(String id) {
         this.id = id;
+        return this;
     }
 
     public List<String> getMenu() {
         return menu;
     }
 
-    public void setMenu(List<String> menu) {
+    public Restaurant setMenu(List<String> menu) {
         this.menu = menu;
+        return this;
     }
 
     public String getRestaurantName() {
         return name;
     }
 
-    public void setRestaurantName(String name) {
+    public Restaurant setRestaurantName(String name) {
         this.name = name;
+        return this;
     }
 
     @Override

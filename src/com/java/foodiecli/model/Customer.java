@@ -16,32 +16,36 @@ import java.util.Objects;
         return email;
     }
 
-    public void setEmail(String email) {
+    public Customer setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getCustomerId() {
         return id;
     }
 
-    public void setCustomerId(String id) {
+    public Customer setCustomerId(String id) {
         this.id = id;
+        return  this;
     }
 
     public String getCustomerName() {
         return name;
     }
 
-    public void setCustomerName(String name) {
+    public Customer setCustomerName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public Customer setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     @Override
