@@ -1,5 +1,7 @@
 package com.java.foodiecli.repository;
 
+import com.java.foodiecli.exceptions.CustomerNotFoundException;
+import com.java.foodiecli.factory.Factory;
 import com.java.foodiecli.model.Customer;
 import com.java.foodiecli.util.CsvReader;
 
@@ -10,8 +12,7 @@ public class CustomerRepository {
     private List<Customer> customerList;
 
     public CustomerRepository(){
-        CsvReader csvReader=new CsvReader();
-        this.customerList=csvReader.readCustomerFromCsv();
+        this.customerList= Factory.getCsvReader().readCustomerFromCsv();
     }
 
     public List<Customer> getCustomerList(){
@@ -22,7 +23,26 @@ public class CustomerRepository {
         this.customerList.add(customer);
         return customer;
     }
-    public Optional<Customer> getCustomerById(String id){
-        return  this.customerList.stream().filter(customer -> customer.getCustomerId().equals(id)).findFirst();
+    public Optional<Customer> getCustomerById(String Id){
+        return  this.customerList.stream().filter(customer -> customer.getCustomerId().equals(Id)).findFirst();
     }
+    public Optional<Customer> getCustomerByEmailAndPassword(String Email,String passWord){
+        return  this.customerList.stream().filter(customer -> customer.getEmail().equals(Email) && customer.getPassword().equals(passWord)).findFirst();
+    }
+    public Customer updateCustomer(Customer customerToBeUpdated) throws CustomerNotFoundException {
+        Optional<Customer> customerOptional = this.customerList.stream().filter(customer -> customer.getCustomerId().equals(customerToBeUpdated.getCustomerId()))
+                .findFirst()
+                .map(customer ->
+                {
+                    customer.setCustomerName(customerToBeUpdated.getCustomerName())
+                            .setEmail(customerToBeUpdated.getEmail())
+                            .setPassword(customerToBeUpdated.getPassword());
+                 return customer;
+                });
+        return customerOptional.orElse(null);
+    }
+    public void deleteCustomer(Customer customer) throws CustomerNotFoundException{
+        this.customerList.remove(customer);
+    }
+
 }
