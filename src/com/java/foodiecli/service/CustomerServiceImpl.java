@@ -10,7 +10,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class CustomerServiceImpl implements CustomerService{
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
+    private Customer CurrentLoggedInCustomer;
 
     public CustomerServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository= customerRepository;
@@ -52,7 +53,7 @@ public class CustomerServiceImpl implements CustomerService{
     public Customer updateCustomer(Customer customer) throws CustomerNotFoundException {
             Optional<Customer> optionalCustomer=this.customerRepository.getCustomerById(customer.getCustomerId());
             if (optionalCustomer.isEmpty()){
-                throw new CustomerNotFoundException("Customer is not Found");
+                throw new CustomerNotFoundException("Customer is not Found with this Id"+customer.getCustomerId());
             }
        return this.customerRepository.updateCustomer(customer);
     }
@@ -64,6 +65,16 @@ public class CustomerServiceImpl implements CustomerService{
             throw new CustomerNotFoundException("Customer is not Found"+id);
         }
         this.customerRepository.deleteCustomer(optionalCustomer.get());
+    }
+
+    @Override
+    public void setCurrentLoggedInCustomer(Customer customer) {
+        this.CurrentLoggedInCustomer=customer;
+    }
+
+    @Override
+    public Customer getCurrentLoggedInCustomer() {
+        return this.CurrentLoggedInCustomer;
     }
 
 }
