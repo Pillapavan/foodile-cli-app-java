@@ -47,36 +47,31 @@ public class CustomerMenu extends Menu {
         }
     }
 
+
     public void customerRegisterForm() {
+        try {
+            System.out.println("Please register entering the following details\n");
+            String id = Factory.getCustomerValidator().getVaildCustomerId();
+            String name = Factory.getCustomerValidator().getVaildCustomerName();
+            String email = Factory.getCustomerValidator().getVaildCustomerEmail();
+            String password = Factory.getCustomerValidator().getVaildCustomerPassword();
+            Customer customer = new Customer();
+            customer.setCustomerId(id)
+                    .setCustomerName(name)
+                    .setEmail(email)
+                    .setPassword(password);
+            Customer savedCustomer = customerController.save(customer);
 
-        boolean registrationSuccessful = false;
-        Scanner scanner = new Scanner(System.in);
-        while (!registrationSuccessful) {
-            try {
-                System.out.println("Please register entering the following details\n");
-                String id = Factory.getCustomerValidator().getVaildCustomerId();
-                String name = Factory.getCustomerValidator().getVaildCustomerName();
-                String email = Factory.getCustomerValidator().getVaildCustomerEmail();
-                String password = Factory.getCustomerValidator().getVaildCustomerPassword();
-                Customer customer = new Customer();
-                customer.setCustomerId(id)
-                        .setCustomerName(name)
-                        .setEmail(email)
-                        .setPassword(password);
-                Customer savedCustomer = customerController.save(customer);
+            displayCustomerDetails(savedCustomer);
+            System.out.println();
+            System.out.println("Customer Registration Successful");
+            displayCustomerMenu();
 
-                displayCustomerDetails(savedCustomer);
-                registrationSuccessful = true;
-                System.out.println();
-                System.out.println("Customer Registration Successful");
-                displayCustomerMenu();
-
-            } catch (CustomerAlreadyExistsException e) {
-                System.out.println(e.getMessage());
-            } catch (Exception e) {
-                System.out.println("Some internal error occurred. Please try again !");
-                customerRegisterForm();
-            }
+        } catch (CustomerAlreadyExistsException e) {
+            System.out.println(e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Some internal error occurred. Please try again !");
+            customerRegisterForm();
         }
     }
 
@@ -86,6 +81,7 @@ public class CustomerMenu extends Menu {
         printDishLine();
         System.out.format("%-10s%-40s%-60s%-40s%n", customer.getCustomerId(), customer.getCustomerName(), customer.getEmail(), customer.getPassword());
     }
+
 
     public void customerLoginform() {
         try {
@@ -97,27 +93,22 @@ public class CustomerMenu extends Menu {
             String passWord = sc.nextLine();
             Customer existingCustomer = customerController.validateCustomerLogin(Email, passWord);
             System.out.println("Login Success :");
-            System.out.println("Welcome Mr : " + existingCustomer.getCustomerName());
-            super.displayMenu();
+            System.out.println("Welcome Mr/Ms : " + existingCustomer.getCustomerName());
         } catch (CustomerNotFoundException e) {
             System.out.println(e.getMessage());
             displayCustomerMenu();
         } catch (Exception e) {
             System.out.println("Some internal error occurred. Please try again !");
-            customerLoginform();
+            displayCustomerMenu();
         }
-
     }
 
     public void customerSearchForm() {
         try {
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Please enter the following details to search for Customer\n");
-            System.out.println("Enter Id");
-            String Id = scanner.nextLine();
+            String Id = Factory.getCustomerValidator().getVaildCustomerId();
             Customer customer = customerController.getCustomerById(Id);
             displayCustomerDetails(customer);
-            displayCustomerMenu();
         } catch (CustomerNotFoundException e) {
             System.out.println(e.getMessage());
             displayCustomerMenu();
@@ -134,22 +125,17 @@ public class CustomerMenu extends Menu {
         super.printDishLine();
         customer.forEach(customer1 ->
         {
-            System.out.printf("%10s %30s %80s %30s\n", customer1.getCustomerId(), customer1.getCustomerName(), customer1.getEmail(), customer1.getPassword());
+            System.out.printf("%10s %30s %80s %30s\n", customer1.getCustomerId(), customer1.getCustomerName(), customer1.getEmail(), "*".repeat(customer1.getPassword().length()));
         });
     }
 
     public void updateCustomerForm() {
         try {
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Please Update entering the following details\n");
-            System.out.println("Enter Your Id");
-            String id = scanner.nextLine();
-            System.out.println("Enter Name");
-            String name = scanner.nextLine();
-            System.out.println("Enter E-mail");
-            String email = scanner.nextLine();
-            System.out.println("Enter Password");
-            String password = scanner.nextLine();
+            String id = Factory.getCustomerValidator().getVaildCustomerId();
+            String name = Factory.getCustomerValidator().getVaildCustomerName();
+            String email = Factory.getCustomerValidator().getVaildCustomerEmail();
+            String password = Factory.getCustomerValidator().getVaildCustomerPassword();
             Customer customer = new Customer();
             customer.setCustomerId(id)
                     .setCustomerName(name)
@@ -164,18 +150,17 @@ public class CustomerMenu extends Menu {
             System.out.println("Some internal error occurred. Please try again !");
         }
     }
-    public void deleteCustomer(){
+
+    public void deleteCustomer() {
         try {
-            Scanner scanner = new Scanner(System.in);
             System.out.println("Please enter the following details to delete the Customer\n");
-            System.out.println("Enter Id");
-            String id = scanner.nextLine();
-            customerController.deleteCustomer(id);
+            String id = Factory.getCustomerValidator().getVaildCustomerId();
+            this.customerController.deleteCustomer(id);
             System.out.println("Customer Deleted Successfully");
         } catch (CustomerNotFoundException e) {
             System.out.println(e.getMessage());
             displayMenu();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Some internal error occurred. Please try again !");
         }
     }
