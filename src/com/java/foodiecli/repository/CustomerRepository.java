@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class CustomerRepository {
-    private List<Customer> customerList;
+    private final List<Customer> customerList;
 
     public CustomerRepository(){
         this.customerList= Factory.getCsvReader().readCustomerFromCsv();
@@ -29,7 +29,7 @@ public class CustomerRepository {
     public Optional<Customer> getCustomerByEmailAndPassword(String Email,String passWord){
         return  this.customerList.stream().filter(customer -> customer.getEmail().equals(Email) && customer.getPassword().equals(passWord)).findFirst();
     }
-    public Customer updateCustomer(Customer customerToBeUpdated) throws CustomerNotFoundException {
+    public Customer updateCustomer(Customer customerToBeUpdated){
         Optional<Customer> customerOptional = this.customerList.stream().filter(customer -> customer.getCustomerId().equals(customerToBeUpdated.getCustomerId()))
                 .findFirst()
                 .map(customer ->
@@ -41,7 +41,7 @@ public class CustomerRepository {
                 });
         return customerOptional.orElse(null);
     }
-    public void deleteCustomer(Customer customer) throws CustomerNotFoundException{
+    public void deleteCustomer(Customer customer){
         this.customerList.remove(customer);
     }
 
