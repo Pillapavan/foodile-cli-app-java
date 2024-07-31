@@ -103,7 +103,7 @@ public class OrdersMenu extends Menu{
                 Customer existingCustomer = customerService.validateCustomerLogin(Email,passWord);
                 customerService.setCurrentLoggedInCustomer(existingCustomer);
                 loggedInCustomer = customerService.getCurrentLoggedInCustomer();
-                System.out.println("Debug: loggedInCustomer after login attempt: " + loggedInCustomer);
+                System.out.println("Welcome MR/MS:" + loggedInCustomer.getCustomerName());
             }
             String id=Factory.getOrderIdValidator().generateOrderId();
             while (restaurant == null) {
