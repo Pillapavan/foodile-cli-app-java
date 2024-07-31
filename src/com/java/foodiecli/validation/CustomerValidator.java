@@ -12,7 +12,6 @@ public class CustomerValidator {
         int input = 0;
         boolean validInput = false;
         while (!validInput) {
-            try {
                 input = sc.nextInt();
                 if (input >= 1 && input <= 7) {
 
@@ -20,12 +19,6 @@ public class CustomerValidator {
                 } else {
                     System.out.println("Invalid choice. Please enter a number between 1 and 7.");
                 }
-            } catch (InputMismatchException e) {
-                System.out.println("Invalid choice. Please enter a number between 1 and 7.");
-                Factory.getCustomerMenu().customerRegisterForm();
-            }
-
-
         }
         return input;
     }
@@ -37,9 +30,11 @@ public class CustomerValidator {
         boolean validId = false;
             while (!validId) {
                 id = sc.nextLine();
-                if (id != null && id.length() >= 3) {
+                if (id != null && id.matches("\\d{3,}")) {
                     validId = true;
-                    id = "C" + id;
+                    if (id.charAt(0)!='C') {
+                        id = "C" + id;
+                    }
                 } else {
                     System.out.println("Invalid id. Please enter an id with at least 3 numbers.");
                 }
@@ -79,7 +74,7 @@ public class CustomerValidator {
                     Email = Email.trim();
 
                 } else {
-                    System.out.println("Invalid Name. Please enter a gmail with at least 8 Characters");
+                    System.out.println("Invalid Email. Please enter a gmail with at least 8 Characters");
                 }
             }
         return Email;
