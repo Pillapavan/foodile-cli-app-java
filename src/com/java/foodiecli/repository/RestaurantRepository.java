@@ -1,22 +1,21 @@
 package com.java.foodiecli.repository;
 
-import com.java.foodiecli.exceptions.RestaurantAlreadyExistsException;
-import com.java.foodiecli.exceptions.RestaurantNotFoundException;
-import com.java.foodiecli.model.Customer;
+import com.java.foodiecli.factory.Factory;
 import com.java.foodiecli.model.Restaurant;
 import com.java.foodiecli.util.CsvReader;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 public class RestaurantRepository {
-    private  List<Restaurant> restaurantList;
+    private final List<Restaurant> restaurantList;
 
     public RestaurantRepository() {
-        CsvReader csvReader=new CsvReader();
-        this.restaurantList=csvReader.readRestaurantsFromCsv();
+        this.restaurantList= Factory.getCsvReader().readRestaurantsFromCsv();
 
+    }
+    public List<Restaurant> getAllRestaurants(){
+         return this.restaurantList;
     }
     public Restaurant saveRestaurant(Restaurant restaurant){
         this.restaurantList.add(restaurant);
@@ -25,7 +24,7 @@ public class RestaurantRepository {
     public Optional<Restaurant> getRestaurantById(String id) {
       return  this.restaurantList.stream().filter(restaurant -> restaurant.getRestaurantId().equals(id)).findFirst();
     }
-    public Restaurant updateRetaurant(Restaurant restaurantToBeUpdated){
+    public Restaurant updateRestaurant(Restaurant restaurantToBeUpdated){
         Optional<Restaurant> restaurantOptional = this.restaurantList.stream().filter(restaurant -> restaurant.getRestaurantId().equals(restaurantToBeUpdated.getRestaurantId()))
                 .findFirst()
                 .map(restaurant -> {
