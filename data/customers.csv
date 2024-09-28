@@ -1,6 +1,6 @@
 customerId,name,email,password
-C001,John Doe,john.doe@example.com,password123
-C002,Jane Smith,jane.smith@example.com,password456
+C001,John Doe,john.doe@example.com,password1234
+C002,Jane Smith,jane.smith@example.com,password45
 C003,Alice Johnson,alice.johnson@example.com,password789
 C004,Bob Brown,bob.brown@example.com,password321
 C005,Charlie Davis,charlie.davis@example.com,password654
