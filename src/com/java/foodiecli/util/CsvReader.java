@@ -18,7 +18,7 @@ public class CsvReader {
      */
     public List<Customer> readCustomerFromCsv(){
         List<Customer> customersList=new ArrayList<>();
-        String CUSTOMER_FILE_PATH = "C:\\Users\\pilla\\IdeaProjects\\foodile-cli-app-java\\data\\customers.csv";
+        String CUSTOMER_FILE_PATH = "C:\\Users\\NagaTatajiSunkara\\OneDrive\\Desktop\\java\\foodile-cli-app-java\\data\\customers.csv";
           //java IO  classes (FileReader,BufferReader)
         //try with resource
         String line;
@@ -48,7 +48,7 @@ public class CsvReader {
     public List<Dish> readDishesFromCsv(){
 
         List<Dish> dishList= new ArrayList<>();
-        String DISH_FILE_PATH="C:\\Users\\pilla\\IdeaProjects\\foodile-cli-app-java\\data\\dishes.csv";
+        String DISH_FILE_PATH="C:\\Users\\NagaTatajiSunkara\\OneDrive\\Desktop\\java\\foodile-cli-app-java\\data\\dishes.csv";
         String line;
         String splitCsvBy=",";
         try(BufferedReader br=new BufferedReader(new FileReader(DISH_FILE_PATH))){
@@ -75,7 +75,7 @@ public class CsvReader {
         public List<Restaurant> readRestaurantsFromCsv(){
 
             List<Restaurant> restaurantList= new ArrayList<>();
-            String RESTAURANTS_FILE_PATH="C:\\Users\\pilla\\IdeaProjects\\foodile-cli-app-java\\data\\restaurants.csv";
+            String RESTAURANTS_FILE_PATH="C:\\Users\\NagaTatajiSunkara\\OneDrive\\Desktop\\java\\foodile-cli-app-java\\data\\restaurants.csv";
             String line;
             String splitCsvBy=",";
             try(BufferedReader br=new BufferedReader(new FileReader(RESTAURANTS_FILE_PATH))){
